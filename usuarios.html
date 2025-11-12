@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IDW_57 - Usuarios</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/estilos.css">
+  <link rel="stylesheet" href="../../css/usuarios.css">
+</head>
+<body class="contacto">
+  <header>
+    <h1>CENTRO MÉDICO - IDW 57</h1>
+    <nav class="navbar navbar-expand-sm bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"><img src="../../img/logo.png" alt="Logo" width="140" height="140" class="d-inline-block align-text-top"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav ms-auto">
+            <a class="nav-link active" href="../../index.html">Inicio</a>
+            <a class="nav-link active" href="../../institucional.html">Institucional</a>
+            <a class="nav-link active" href="../../contacto.html">Contacto</a>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle text-dark" data-bs-toggle="dropdown" href="#" role="button">Servicios</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="../../pacientes.html">Pacientes</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="../../administracion.html">Administración</a></li>
+              </ul>
+            </li>
+          </div>
+          <button id="theme-toggle" class="btn btn-outline-light ms-3" style="border-radius: 50%; font-size: 1.2rem;">🌙</button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container my-4 d-flex justify-content-center">
+    <div class="tabla-contenedor w-100" style="max-width: 1200px;">
+      <h2 class="tabla-titulo">Listado de Usuarios</h2>
+      <table class="table table-bordered table-striped" id="tablaUsuarios">
+        <thead class="table-primary">
+          <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Usuario</th>
+            <th>Email</th>
+            <th>Teléfono</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Se llenará desde gestion_usuarios.js -->
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 - Centro Médico IDW_57</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/theme.js"></script>
+  <script src="../js/gestion_usuarios.js"></script>
+</body>
+</html>
+
