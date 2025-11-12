@@ -1,0 +1,55 @@
+// login.js
+import { usuarios } from '../config/usuarios.js'; // Asegúrate de tener el archivo en el mismo directorio o ajustar la ruta
+
+const formularioLogin = document.getElementById('form');
+const usuarioInput = document.getElementById('usuario');
+const claveInput = document.getElementById('clave');
+const loginError = document.getElementById('login-error');
+
+formularioLogin.addEventListener('submit', async function(event) {
+    event.preventDefault();
+
+    const usuarioValor = usuarioInput.value.trim();
+    const claveValor = claveInput.value.trim();
+
+    if (!usuarioValor || !claveValor) {
+        loginError.textContent = 'Por favor ingresa usuario y contraseña';
+        return;
+    }
+
+    // 🔹 Verificar si es un usuario local (como superadmin)
+    const usuarioLocal = usuarios.find(u => u.usuario === usuarioValor && u.clave === claveValor);
+    if (usuarioLocal) {
+        // Guardamos el rol en sessionStorage
+        sessionStorage.setItem('usuarioLogeado', usuarioLocal.usuario);
+        sessionStorage.setItem('rol', usuarioLocal.usuario === 'superadmin' ? 'superadmin' : 'admin');
+        window.location.href = 'administracion.html';
+        return;
+    }
+
+    // 🔹 Si no es local, intentamos el login con DummyJSON
+    try {
+        const response = await fetch('https://dummyjson.com/auth/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                username: usuarioValor,
+                password: claveValor
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error('Usuario o contraseña incorrectos');
+        }
+
+        const data = await response.json();
+
+        sessionStorage.setItem('usuarioLogeado', data.username);
+        sessionStorage.setItem('token', data.token || data.accessToken);
+        sessionStorage.setItem('rol', 'usuario'); // rol por defecto
+
+        window.location.href = 'administracion.html';
+    } catch (error) {
+        loginError.textContent = error.message;
+    }
+});
